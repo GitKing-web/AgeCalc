@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div class="card w-25 p-3 m-5">
+        <div class="info" style="display: none;">
+            <div class="p-2 d-flex justify-content-between" style="background-color: red; color: white;">
+                <p style="font-style: italic;">please enter a valid age</p>
+                <button class=" rem text-white" style="font-size: 26px; background: transparent; border: none;">&times;</button>
+            </div>
+        </div>
+        <legend>
+         Age:   
+        </legend>
+        <input type="number" placeholder="enter your age" class="form-control age"/>
+
+        <legend>
+            Year:
+        </legend>
+        <!-- <input readonly  value="you were born in 2001" class="form-control year"/> -->
+        <p class="output border p-2"></p>
+        <button class="btn btn-success mt-4">Calculate</button>
+    </div>
+
+    <!-- script-->
+
+    <script>
+        const age = document.querySelector('.age');
+        const year = document.querySelector('.year');
+        const button = document.querySelector('.btn');
+        const info = document.querySelector('.info');
+        const output = document.querySelector('.output')
+        const rem = document.querySelector('.rem');
+        // let msg;
+
+        button.addEventListener('click', e => {
+            let yearOfBirth;
+            let currentYear;
+            currentYear = new Date().getFullYear();
+            yearOfBirth = currentYear - age.value;
+            if(!age.value || age.value === "" || age.value <= 0){
+                info.style.display = 'block'
+                return
+            }else{ output.innerHTML = `you were born in ${ yearOfBirth}`}
+            age.value = '';
+        });
+
+        rem.addEventListener('click', e => {
+            info.style.display = 'none'
+        })
+    </script>
+</body>
+</html>
